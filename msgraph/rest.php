@@ -67,14 +67,8 @@ private static $contruct_args = array( 'slug', 'root_endpoint_url', 'config', 't
 	}
 
 	public function __destruct() {
-		$this->curl_close();
+		MSGraphAPIREST_shutdown( $this->curl );
     }
-
-	private function curl_close() {
-		if( $this->curl !== null )
-        	curl_close( $this->curl );
-		$this->curl = null;
-	}
 
 	private function get_authorization_header() {
 		// Request new access token 2 minutes before it expires to prevent it from expiring mid request
@@ -120,7 +114,7 @@ private static $contruct_args = array( 'slug', 'root_endpoint_url', 'config', 't
 		
 		if( $this->curl === null ) {
 			$this->curl = curl_init();
-			register_shutdown_function( array( $this, 'curl_close' ) );
+			register_shutdown_function( 'MSGraphAPIREST_shutdown', $this->curl );
 		}
 
 		curl_reset( $this->curl );
@@ -180,4 +174,10 @@ private static $contruct_args = array( 'slug', 'root_endpoint_url', 'config', 't
 
 		return $response;
 	}
+}
+
+function MSGraphAPIREST_shutdown( &$ch ) {
+	if( $ch !== null )
+		@curl_close( $ch );
+	$ch = null;
 }
