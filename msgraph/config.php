@@ -62,7 +62,7 @@ class MSGraphPluginConfig extends PluginConfig {
      * validation errors) prior to saving. Add an error to the errors list
      * or return boolean FALSE if the config commit should be aborted.
      */
-    function pre_save($config, &$errors) {
+    function pre_save(&$config, &$errors) {
         // Clear access token when config options are changed
         $this->set( 'msgraph-oauth-token_type', '' );
 		$this->set( 'msgraph-oauth-access_token', '' );
