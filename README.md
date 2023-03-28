@@ -1,5 +1,5 @@
 # Microsoft Graph API Mailfetcher Plugin for OSTicket
-Fetches mail from Microsoft 365 using the Microsoft Graph API. This was written eliminate the use of IMAP with pulling mail from 365 accounts as Microsoft has been activing trying to eliminate it for years.
+Fetches mail from Microsoft 365 using the Microsoft Graph API. This was written eliminate the use of IMAP with pulling mail from 365 accounts as Microsoft has been actively trying to eliminate it for years.
 
 # Installation
 1. Copy the `/msgraph/` folder to the `/include/plugins/` in your OSTicket installation.
